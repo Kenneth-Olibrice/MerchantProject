@@ -1,0 +1,3 @@
+ Fill, <*_*>, 5, W, Sword, Bow, Big Sword, Big Bow, Even Bigger Sword, A stick with string
+ Karin, 龴ↀ◡ↀ龴, 7, W, Axe, Jar of Jam, An Arrow, M, Magic soup, Fire Ball, Summon Greater Rat
+ Mr.Trust Me,【ツ】, 100, W, Not evil Sword, Not evil Axe, Not evil dagger, M, Summon not evil gods, Remove blood(Not for evil), Summon Fill(For not evil)
