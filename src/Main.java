@@ -70,20 +70,10 @@ public class Main {
                 System.exit(-666);
             }
 
-            System.out.println("Here's what I got for you:");
-            System.out.print("Weapons: ");
-            for (int i = 0; i < merchants.get(choice).getWeapons().size(); i++) {
-                System.out.print(merchants.get(choice).getWeapons().get(i) + ", ");
-            }
-            System.out.print("\n");
-            System.out.print("Magic weapons: ");
-            for (int i = 0; i < merchants.get(choice).getMagicWeapons().size(); i++) {
-                System.out.print(merchants.get(choice).getMagicWeapons().get(i) + ", ");
-            }
-            System.out.print("\n");
+
+            outputInventory(merchants.get(choice));
             userInput.nextLine();
             while (!merchants.get(choice).getWeapons().isEmpty() || !merchants.get(choice).getMagicWeapons().isEmpty()) {
-
                 if (!merchants.get(choice).getWeapons().isEmpty()) {
                     System.out.println("Would you like to buy a weapon? if so, which weapon?");
                     String weaponChoice = userInput.nextLine();
@@ -91,10 +81,12 @@ public class Main {
                         if (merchants.get(choice).getWeapons().get(i).equalsIgnoreCase(weaponChoice)) {
                             System.out.println("That weapon is now yours, sir!");
                             merchants.get(choice).getWeapons().remove(merchants.get(choice).getWeapons().get(i));
+                            outputInventory(merchants.get(choice));
                             break;
                         }
                     }
                 }
+
                 if(!merchants.get(choice).getMagicWeapons().isEmpty()) {
                     System.out.println("Would you like to buy a weapon? if so, which weapon?");
                     String weaponChoice = userInput.nextLine();
@@ -102,13 +94,37 @@ public class Main {
                         if (merchants.get(choice).getMagicWeapons().get(i).equalsIgnoreCase(weaponChoice)) {
                             System.out.println("That weapon is now yours, sir!");
                             merchants.get(choice).getMagicWeapons().remove(merchants.get(choice).getMagicWeapons().get(i));
+                            outputInventory(merchants.get(choice));
                             break;
                         }
                     }
                 }
-
+                if(merchants.get(choice).getWeapons().size() < 1 && merchants.get(choice).getMagicWeapons().size() < 1) { // Incredible time complexity. Father O would be proud.
+                    merchants.remove(merchants.get(choice));
+                    break;
+                }
             }
         }
+    }
+
+    private static void outputInventory(Merchant merchant) {
+        int weapSize = merchant.getWeapons().size();
+        int magicWeapSize = merchant.getMagicWeapons().size();
+        System.out.println("----------");
+        System.out.println("Here's what I got for you:");
+        System.out.print("Weapons: ");
+
+        for (int i = 0; i < weapSize; i++) {
+            System.out.print(merchant.getWeapons().get(i) + ",");
+        }
+        System.out.print("\n");
+        System.out.print("Magic weapons: ");
+        for (int i = 0; i < magicWeapSize; i++) {
+            System.out.print(merchant.getMagicWeapons().get(i) + ",");
+        }
+        System.out.println("\n----------");
+
+
     }
 }
 
